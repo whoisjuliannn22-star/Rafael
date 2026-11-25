@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Barangay Don Bosco – Facility Scheduling System</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- LOGIN / SIGN UP -->
+<section id="auth">
+  <div class="c" style="width:300px;height:300px;left:12%;top:-60px"></div>
+  <div class="c" style="width:260px;height:260px;left:26%;top:130px"></div>
+  <div class="c" style="width:260px;height:260px;left:6%;bottom:-70px"></div>
+  <div class="box">
+    <h2 id="at" style="margin:0 0 16px;font-weight:500">Log in</h2>
+    <input id="aN" placeholder="Name" class="hide" autocomplete="name">
+    <input id="aE" placeholder="Email" type="email" autocomplete="email">
+    <input id="aP" placeholder="Password" type="password" autocomplete="current-password">
+    <div id="aM" class="err"></div>
+    <button class="btn" id="aB">Log in</button>
+    <a id="aS">No account yet? Sign up</a>
+    <p style="font-size:12px;opacity:.85;margin:14px 0 0">Demo: resident@bdb.ph / 1234 · admin@bdb.ph / admin</p>
+  </div>
+</section>
+
+<!-- APP -->
+<div id="app" class="hide">
+  <header>
+    <small>Republika ng Pilipinas • Barangay Local Government Unit • District II</small>
+    <div class="bar">
+      <div class="logo">▦</div>
+      <div><h1>BARANGAY DON BOSCO</h1><small>Facility Scheduling System</small></div>
+      <nav>
+        <button data-v="schedule">Daily Schedule</button>
+        <button data-v="book">Book Facility</button>
+        <button data-v="requests">My Requests</button>
+        <button data-v="admin" id="navAdmin" class="hide">Admin View</button>
+        <button id="who" title="Log out"></button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Daily schedule -->
+    <section id="v-schedule">
+      <div class="hd">
+        <div><h2>Facility Timetable</h2><p>View available and booked slots across all barangay facilities.</p></div>
+        <div>Select Date: <input type="date" id="date"> <button class="btn alt" id="todayBtn">Today</button></div>
+      </div>
+      <div class="pill">Covered Court Slots</div>
+      <div class="grid" id="slots"></div>
+    </section>
+
+    <!-- Booking form -->
+    <section id="v-book" class="hide">
+      <div class="hd"><div><h2>Book a Facility</h2><p>Fill in the details. Your request is reviewed by the barangay.</p></div></div>
+      <form class="form" id="bf">
+        <div class="row">
+          <div><label>Full Applicant Name *</label><input id="fN" required></div>
+          <div><label>Contact Number *</label><input id="fC" required inputmode="tel" pattern="[0-9+ \-]{7,15}" title="Enter a valid phone number"></div>
+        </div>
+        <label>Residency Category *</label>
+        <div class="radios" id="fR">
+          <label><input type="radio" name="res" value="Resident" checked> Resident (₱100/hr)</label>
+          <label><input type="radio" name="res" value="Non-resident"> Non-resident (₱250/hr)</label>
+          <label><input type="radio" name="res" value="Organization"> Organization (₱150/hr)</label>
+        </div>
+        <div class="row">
+          <div><label>Select Court *</label><select id="fCt"><option>Covered Court</option><option>Open Court</option></select></div>
+          <div><label>Reservation Date *</label><input type="date" id="fD" required></div>
+          <div><label>Start Time *</label><select id="fS"></select></div>
+          <div><label>Duration Hours *</label><select id="fH"></select></div>
+        </div>
+        <label>Event Purpose *</label><input id="fP" required placeholder="e.g. Zumba session">
+        <label>Additional Notes</label><textarea id="fNt" rows="2"></textarea>
+        <div class="fee">Estimated Facility Fee: <span id="fFee">₱0</span></div>
+        <div class="err" id="fE"></div>
+        <div class="acts"><button type="button" class="btn alt" id="fX">✕ Cancel</button><button class="btn">Submit</button></div>
+      </form>
+    </section>
+
+    <!-- My requests -->
+    <section id="v-requests" class="hide">
+      <div class="hd"><div><h2>My Requests</h2><p>Track the status of your reservations.</p></div><button class="btn" id="addReq">Add New Request</button></div>
+      <div class="wrap" id="reqT"></div>
+    </section>
+
+    <!-- Admin -->
+    <section id="v-admin" class="hide">
+      <div class="hd"><div><h2>Barangay Facility Admin Dashboard</h2><p>Manage and review facility reservation requests submitted by residents.</p></div><button class="btn alt" id="addEv">＋ Add New Event</button></div>
+      <div class="stats" id="stats"></div>
+      <div class="wrap" id="admT"></div>
+    </section>
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
